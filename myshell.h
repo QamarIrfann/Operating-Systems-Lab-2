@@ -1,10 +1,8 @@
 /*
  * SOFE3950U - Operating Systems
- * Lab 2: A Simple Shell (myshell)
- *
+ * Lab 2
  * Name: Qamar Irfan
- * Student #: (fill-in)
- * Group: (fill-in)
+
  */
 
 #ifndef MYSHELL_H

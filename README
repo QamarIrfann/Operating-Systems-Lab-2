@@ -2,6 +2,8 @@
 ## Lab 2 – myshell
 
 **Name:** Qamar Irfan  
+
+
 ---
 
 ## Description
@@ -10,14 +12,12 @@ myshell is a simple command-line shell developed for Lab 2.
 It can run in interactive mode or read commands from a batch file.
 
 Interactive mode:
-```
+
 ./myshell
-```
 
 Batch mode:
-```
+
 ./myshell batchfile
-```
 
 In interactive mode, the prompt displays the full path of the current working directory.
 
@@ -25,14 +25,14 @@ In interactive mode, the prompt displays the full path of the current working di
 
 ## Internal Commands
 
-- `cd [dir]` – Change directory (prints current directory if none given)
-- `clr` – Clear the screen
-- `dir [dir]` – List contents of directory
-- `environ` – Display environment variables
-- `echo [text]` – Print text
-- `help` – Display manual
-- `pause` – Wait for Enter key
-- `quit` – Exit myshell
+- cd [dir] – Change directory (prints current directory if none given)
+- clr – Clear the screen
+- dir [dir] – List contents of directory
+- environ – Display environment variables
+- echo [text] – Print text
+- help – Display manual
+- pause – Wait for Enter key
+- quit – Exit myshell
 
 ---
 
@@ -46,26 +46,24 @@ If a command is not internal, myshell creates a child process and executes it as
 
 Supported operators:
 
-- `<`  input redirection  
-- `>`  output (overwrite)  
-- `>>` output (append)  
+- <  input redirection  
+- >  output (overwrite)  
+- >> output (append)  
 
 Example:
-```
-dir > output.txt
-program < input.txt > output.txt
-```
+
+dir > output.txt  
+program < input.txt > output.txt  
 
 ---
 
 ## Background Execution
 
-External programs can run in the background using `&`.
+External programs can run in the background using &.
 
 Example:
-```
+
 sleep 5 &
-```
 
 myshell will not wait for background processes to finish.
 
@@ -73,5 +71,5 @@ myshell will not wait for background processes to finish.
 
 ## Environment Variables
 
-- `shell` – stores full path to myshell
-- `parent` – set in child processes
+- shell – stores full path to myshell
+- parent – set in child processes

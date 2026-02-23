@@ -1,109 +1,80 @@
-SOFE3950U – Operating Systems
-Lab 2 – A Simple Shell (myshell)
+# SOFE3950U – Operating Systems  
+## Lab 2 – myshell
 
-Name: Qamar Irfan
-Student #: (fill-in)
-Group: (fill-in)
+**Name:** Qamar Irfan  
+**Student #:** (fill-in)  
+**Group:** (fill-in)
 
+---
 
-WHAT THIS PROGRAM DOES
-myshell is a simple command-line shell. It can be used interactively (typing commands
-directly), or it can read commands from a batch file.
+## Description
 
-If started like this:
+myshell is a simple command-line shell developed for Lab 2.  
+It can run in interactive mode or read commands from a batch file.
 
-    myshell batchfile
+Interactive mode:
+```
+./myshell
+```
 
-then myshell will read each command from the file and execute them one by one.
-When it reaches the end of the file, it exits.
+Batch mode:
+```
+./myshell batchfile
+```
 
+In interactive mode, the prompt displays the full path of the current working directory.
 
-PROMPT
-When running normally (interactive mode), the shell displays the full path of the
-current working directory in the prompt, for example:
+---
 
-    /home/user/lab2$
+## Internal Commands
 
+- `cd [dir]` – Change directory (prints current directory if none given)
+- `clr` – Clear the screen
+- `dir [dir]` – List contents of directory
+- `environ` – Display environment variables
+- `echo [text]` – Print text
+- `help` – Display manual
+- `pause` – Wait for Enter key
+- `quit` – Exit myshell
 
-INTERNAL COMMANDS
+---
 
-cd [directory]
-- Changes the current working directory.
-- If no directory is given, it prints the current working directory.
-- If the directory does not exist, an error message is shown.
-- The PWD environment variable is updated.
+## External Commands
 
-clr
-- Clears the screen.
+If a command is not internal, myshell creates a child process and executes it as an external program.
 
-dir [directory]
-- Lists the contents of the specified directory (non-recursive).
-- If no directory is provided, it lists the current directory.
+---
 
-environ
-- Displays all environment variables.
+## I/O Redirection
 
-echo [text]
-- Prints the text that follows echo, then a newline.
-- Extra spaces/tabs are treated as normal separators.
-- If nothing follows echo, it prints a blank line.
+Supported operators:
 
-help
-- Displays this manual using the more command.
-
-pause
-- Pauses the shell until the user presses Enter.
-
-quit
-- Exits myshell.
-
-
-EXTERNAL COMMANDS
-If the command entered is not one of the internal commands, myshell treats it as
-an external program. It creates a child process and executes the program there.
-
-
-ENVIRONMENT VARIABLES
-
-shell
-- Set in myshell itself.
-- Stores the full path to the myshell executable.
-
-parent
-- Set only in child processes created for external commands.
-- Contains the same full path as the shell variable.
-
-
-I/O REDIRECTION
-
-myshell supports input and output redirection.
-
-Examples:
-
-    program < inputfile
-    program > outputfile
-    program >> outputfile
-    program < inputfile > outputfile
-
-<   replaces stdin with inputfile
->   replaces stdout with outputfile (creates or overwrites)
->>  replaces stdout with outputfile (creates or appends)
-
-Output redirection is also supported for the following internal commands:
-dir, environ, echo, help
-
-Examples:
-
-    dir > listing.txt
-    environ >> env.txt
-    help > manual.txt
-
-
-BACKGROUND EXECUTION
-
-For external programs only, adding & at the end of the command runs it in the
-background. myshell does not wait for it to finish.
+- `<`  input redirection  
+- `>`  output (overwrite)  
+- `>>` output (append)  
 
 Example:
+```
+dir > output.txt
+program < input.txt > output.txt
+```
 
-    sleep 10 &
+---
+
+## Background Execution
+
+External programs can run in the background using `&`.
+
+Example:
+```
+sleep 5 &
+```
+
+myshell will not wait for background processes to finish.
+
+---
+
+## Environment Variables
+
+- `shell` – stores full path to myshell
+- `parent` – set in child processes

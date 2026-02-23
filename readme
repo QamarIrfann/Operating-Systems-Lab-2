@@ -1,0 +1,109 @@
+SOFE3950U – Operating Systems
+Lab 2 – A Simple Shell (myshell)
+
+Name: Qamar Irfan
+Student #: (fill-in)
+Group: (fill-in)
+
+
+WHAT THIS PROGRAM DOES
+myshell is a simple command-line shell. It can be used interactively (typing commands
+directly), or it can read commands from a batch file.
+
+If started like this:
+
+    myshell batchfile
+
+then myshell will read each command from the file and execute them one by one.
+When it reaches the end of the file, it exits.
+
+
+PROMPT
+When running normally (interactive mode), the shell displays the full path of the
+current working directory in the prompt, for example:
+
+    /home/user/lab2$
+
+
+INTERNAL COMMANDS
+
+cd [directory]
+- Changes the current working directory.
+- If no directory is given, it prints the current working directory.
+- If the directory does not exist, an error message is shown.
+- The PWD environment variable is updated.
+
+clr
+- Clears the screen.
+
+dir [directory]
+- Lists the contents of the specified directory (non-recursive).
+- If no directory is provided, it lists the current directory.
+
+environ
+- Displays all environment variables.
+
+echo [text]
+- Prints the text that follows echo, then a newline.
+- Extra spaces/tabs are treated as normal separators.
+- If nothing follows echo, it prints a blank line.
+
+help
+- Displays this manual using the more command.
+
+pause
+- Pauses the shell until the user presses Enter.
+
+quit
+- Exits myshell.
+
+
+EXTERNAL COMMANDS
+If the command entered is not one of the internal commands, myshell treats it as
+an external program. It creates a child process and executes the program there.
+
+
+ENVIRONMENT VARIABLES
+
+shell
+- Set in myshell itself.
+- Stores the full path to the myshell executable.
+
+parent
+- Set only in child processes created for external commands.
+- Contains the same full path as the shell variable.
+
+
+I/O REDIRECTION
+
+myshell supports input and output redirection.
+
+Examples:
+
+    program < inputfile
+    program > outputfile
+    program >> outputfile
+    program < inputfile > outputfile
+
+<   replaces stdin with inputfile
+>   replaces stdout with outputfile (creates or overwrites)
+>>  replaces stdout with outputfile (creates or appends)
+
+Output redirection is also supported for the following internal commands:
+dir, environ, echo, help
+
+Examples:
+
+    dir > listing.txt
+    environ >> env.txt
+    help > manual.txt
+
+
+BACKGROUND EXECUTION
+
+For external programs only, adding & at the end of the command runs it in the
+background. myshell does not wait for it to finish.
+
+Example:
+
+    sleep 10 &
